@@ -17,12 +17,9 @@
 ************************************************************************/
 
 
-#include "stack.h"
-#include "core.h"
-
-
 #define MAXSTACK 4096
 #define EMPTYSTACK -1
+
 int top = EMPTYSTACK;
 char *items[MAXSTACK];
 
@@ -37,12 +34,12 @@ char *pop()
    return items[top--];
 }
 
-BOOL full()
+int full()
 {
    return top+1 == MAXSTACK;
 }
 
-BOOL empty()
+int empty()
 {
    return top == EMPTYSTACK;
 }

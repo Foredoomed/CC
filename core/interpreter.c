@@ -56,7 +56,7 @@ int parse(FILE *file)
   return 0;
 }
 
-int excute(char *file)
+int execute(char *file)
 {
   printf("Excuting : %s", file);
 
@@ -74,9 +74,9 @@ int excute(char *file)
 
   long end = get_time();
 
-  long elapsed = elapsed(start, end);
+  long t = elapsed(start, end);
 
-  printf("Finished in %ld", elapsed);
+  printf("Finished in %ld", t);
 
   fclose(src);
 

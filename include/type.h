@@ -27,7 +27,7 @@ typedef enum type
 
   INT = 1
 
-} TYPE
+} TYPE;
 
 
 

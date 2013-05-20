@@ -21,16 +21,13 @@
 #define STACK_H
 
 
-#include "core.h"
-
-
 void push(char *c);
 
 char *pop();
 
-BOOL full();
+int full();
 
-BOOL empty();
+int empty();
 
 
 #endif

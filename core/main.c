@@ -28,5 +28,5 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  return excute(*(argv+1));
+  return execute(*argv);
 }
