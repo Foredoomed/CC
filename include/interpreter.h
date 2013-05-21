@@ -24,10 +24,10 @@
 #include <stdio.h>
 
 
-int parse(char *file);
+int parse(FILE *file);
 
 
-int execute(FILE *file);
+int execute(char *file);
 
 
 

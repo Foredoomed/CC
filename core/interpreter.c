@@ -46,7 +46,7 @@ int parse(FILE *file)
         break;
       }
       case PRINT :
-        printf(pop());
+        printf("%s\n", pop());
         break;
       case END :
         return 0;
@@ -80,6 +80,6 @@ int execute(char *file)
 
   fclose(src);
 
-  return 0;
+  return result;
 
 }
