@@ -26,9 +26,7 @@
 
 int parse(FILE *file);
 
-
 int execute(char *file);
-
 
 
 #endif

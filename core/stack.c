@@ -17,26 +17,38 @@
 ************************************************************************/
 
 
+#include <stdio.h>
+#include <string.h>
+
 #define MAXSTACK 4096
-#define EMPTYSTACK -1
+#define EMPTYSTACK 0
+#define ITEMSIZE 128
+
+struct item {
+  char e[ITEMSIZE];
+};
 
 int top = EMPTYSTACK;
-char *items[MAXSTACK];
+struct item stack[MAXSTACK];
 
 
-void push(char *c)
+void push(const char *item)
 {
-   items[++top] = c;
+   if(top >= MAXSTACK){
+    return;
+   }
+
+   memcpy(stack[top++].e, item, ITEMSIZE);
 }
 
-char *pop()
+void pop(char dest[])
 {
-   return items[top--];
+   memcpy(dest, stack[--top].e, ITEMSIZE);
 }
 
 int full()
 {
-   return top+1 == MAXSTACK;
+   return top == MAXSTACK;
 }
 
 int empty()

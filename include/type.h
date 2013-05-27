@@ -30,6 +30,4 @@ typedef enum type
 } TYPE;
 
 
-
-
 #endif

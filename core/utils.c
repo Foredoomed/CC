@@ -29,7 +29,7 @@ long get_time()
   return (long)(time(NULL));
 }
 
-long elapsed(long start, long end)
+double elapsed(long start, long end)
 {
   //double elapsed = (second.tv_sec - first.tv_sec) * 1000.0;
   //elapsed += (second.tv_usec - first.tv_usec) / 1000.0;
@@ -57,7 +57,7 @@ CODE read_code(FILE *file)
   if(fscanf(file, "%d", &code) == 1){
     return (CODE) code;
   }
-  return -1;
+  return 0;
 }
 
 BOOL is_not_open(FILE *file)
@@ -65,15 +65,11 @@ BOOL is_not_open(FILE *file)
   return (file == NULL);
 }
 
-BOOL has_next(FILE *file)
-{
-  return feof(file);
-}
 
 BOOL read_header(FILE *file)
 {
   int magic = 'C' + 'l' + 'e' + 'a' + 'n' + ' ' + 'C';
-  int ret;
+  int ret = 0;
   int i;
   for(i = 0; i < 7; i++){
     ret += fgetc(file);
@@ -82,17 +78,10 @@ BOOL read_header(FILE *file)
   return magic == ret;
 }
 
-char read_constant_type(FILE *file)
+char read_type(FILE *file)
 {
   char type = fgetc(file);
   return type;
-}
-
-char *read_litteral(FILE *file)
-{
-  char *ret;
-  fgets(ret, 4096, file);
-  return ret;
 }
 
 void close(FILE *file){

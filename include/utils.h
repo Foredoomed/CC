@@ -28,23 +28,19 @@
 
 long get_time();
 
-long elapsed(long start, long end);
+double elapsed(long start, long end);
 
 void read_char(const char *file, char chs[]);
 
-CODE read_code();
+CODE read_code(FILE *file);
 
-char read_constant_type();
+char read_type(FILE *file);
 
-char *read_litteral();
+int read_header(FILE *file);
 
-int read_header();
+void close(FILE *file);
 
-void close();
-
-BOOL is_not_open();
-
-BOOL has_next();
+BOOL is_not_open(FILE *file);
 
 
 #endif

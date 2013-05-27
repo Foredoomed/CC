@@ -33,24 +33,31 @@ int parse(FILE *file)
     return 1;
   }
 
-  while(has_next(file)){
-    CODE code = read_code(file);
-
+  int ch = fgetc(file);
+  while(ch != EOF){
+    CODE code = ch - '0';
     switch(code){
       case PUSH : {
-        char type = read_constant_type(file);
+        char type = read_type(file);
         if(type == 'S'){
-          char *litteral = read_litteral(file);
+          int length;
+          fscanf(file, "%d", &length);
+          char litteral[length];
+          fgets(litteral, length + 1, file);
           push(litteral);
         }
         break;
       }
-      case PRINT :
-        printf("%s\n", pop());
+      case PRINT : {
+        char output[128];
+        pop(output);
+        printf("%s\n", output);
         break;
+      }
       case END :
         return 0;
     }
+    ch = fgetc(file);
   }
 
   return 0;
@@ -65,7 +72,7 @@ int execute(char *file)
   FILE *src = fopen(file, "r");
 
   if(NULL == src){
-    printf("Unable to open %s", file);
+    printf("Error opening %s", file);
     return 1;
   }
 
@@ -73,9 +80,9 @@ int execute(char *file)
 
   long end = get_time();
 
-  long t = elapsed(start, end);
+  double t = elapsed(start, end);
 
-  printf("Finished in %ld", t);
+  printf("Finished in %lf\n", t);
 
   fclose(src);
 
