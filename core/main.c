@@ -24,9 +24,9 @@
 int main(int argc, char **argv)
 {
   if(argc == 1){
-    printf("%s\n","Not enough argument, provide a file to excute.");
+    printf("Not enough argument, provide a file to excute");
     return 1;
   }
 
-  return execute(*argv);
+  return execute(*(++argv));
 }

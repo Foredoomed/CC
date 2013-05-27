@@ -28,8 +28,8 @@ int parse(FILE *file)
 {
   int head = read_header(file);
 
-  if(head == -1){
-    printf("Not a Clean C compiled file");
+  if(head == 0){
+    printf("Invalid Clean C compiled file");
     return 1;
   }
 
@@ -58,12 +58,11 @@ int parse(FILE *file)
 
 int execute(char *file)
 {
-  printf("Excuting : %s", file);
+  printf("Executing : %s", file);
 
   long start = get_time();
 
-  FILE *src;
-  src = fopen(file, "r");
+  FILE *src = fopen(file, "r");
 
   if(NULL == src){
     printf("Unable to open %s", file);
