@@ -68,7 +68,7 @@ BOOL is_not_open(FILE *file)
 
 BOOL read_header(FILE *file)
 {
-  int magic = 'C' + 'l' + 'e' + 'a' + 'n' + ' ' + 'C';
+  int magic = 'C' + 'C';
   int ret = 0;
   int i;
   for(i = 0; i < 7; i++){
