@@ -42,5 +42,6 @@ void close(FILE *file);
 
 BOOL is_not_open(FILE *file);
 
+int get_digits(int number);
 
 #endif

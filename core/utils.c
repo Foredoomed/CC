@@ -22,7 +22,7 @@
 #include <time.h>
 #include "code.h"
 #include "core.h"
-
+#include "util.h"
 
 long get_time()
 {
@@ -31,10 +31,7 @@ long get_time()
 
 double elapsed(long start, long end)
 {
-  //double elapsed = (second.tv_sec - first.tv_sec) * 1000.0;
-  //elapsed += (second.tv_usec - first.tv_usec) / 1000.0;
-
-  return (end - start) / 1000.0;
+  return difftime(start, end);
 }
 
 void read_char(const char *file, char chs[])
@@ -71,7 +68,7 @@ BOOL read_header(FILE *file)
   int magic = 'C' + 'C';
   int ret = 0;
   int i;
-  for(i = 0; i < 7; i++){
+  for(i = 0; i < 2; i++){
     ret += fgetc(file);
   }
 
@@ -86,4 +83,14 @@ char read_type(FILE *file)
 
 void close(FILE *file){
   fclose(file);
+}
+
+int get_digits(int number)
+{
+  int digits = 0;
+  while(number){
+    number /= 10;
+    digits++;
+  }
+  return digits;
 }

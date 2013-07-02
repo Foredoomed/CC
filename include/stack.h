@@ -21,9 +21,9 @@
 #define STACK_H
 
 
-void push(const char *item);
+void push(const char *element);
 
-void pop(char dest[]);
+char * pop();
 
 int full();
 

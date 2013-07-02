@@ -19,41 +19,44 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include "stack.h"
 
-#define MAXSTACK 4096
+#define MAXSTACK 1024*1024*4
 #define EMPTYSTACK 0
-#define ITEMSIZE 128
 
-struct item {
-  char e[ITEMSIZE];
-};
+typedef struct item_t {
+  char *value;
+} item_t;
 
 int top = EMPTYSTACK;
-struct item stack[MAXSTACK];
+item_t *stack[MAXSTACK];
 
 
-void push(const char *item)
+void push(const char *data)
 {
-   if(top >= MAXSTACK){
+  if(top >= MAXSTACK){
     return;
-   }
-
-   memcpy(stack[top++].e, item, ITEMSIZE);
+  }
+  item_t *item = malloc(sizeof(item_t));
+  item->value=malloc(sizeof(data));
+  memcpy(item->value, data, strlen(data));
+  stack[top++] = item;
 }
 
-void pop(char dest[])
+char * pop()
 {
-   memcpy(dest, stack[--top].e, ITEMSIZE);
+  return stack[--top]->value;
 }
 
 int full()
 {
-   return top == MAXSTACK;
+  return top == MAXSTACK;
 }
 
 int empty()
 {
-   return top == EMPTYSTACK;
+  return top == EMPTYSTACK;
 }
 
 
