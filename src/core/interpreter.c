@@ -107,7 +107,7 @@ int execute(char *file)
 
   long end = get_time();
 
-  double t = elapsed(start, end);
+  double t = elapsed(end, start);
 
   printf("Finished in %.3f seconds\n", t);
 
